@@ -14,7 +14,13 @@ public class CollisionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		print ("Started");
+	}
 
+	IEnumerator AudioDelay()
+	{
+		print(Time.time);
+		yield return new WaitForSecondsRealtime(1);
+		print(Time.time);
 	}
 	
 	// Update is called once per frame
@@ -22,41 +28,50 @@ public class CollisionScript : MonoBehaviour {
 		AudioSource audio = GetComponent<AudioSource> ();
 		if (collision == 0) {
 			transform.position += Vector3.left * Time.deltaTime;
-			//audio.Play ();
 		} else if (collision == 1) {
 			transform.position += Vector3.back * Time.deltaTime;
-			audio.Play ();
 		} else if (collision == 2) {
-			audio.Play ();
 			transform.position += Vector3.left * Time.deltaTime;
 			timer1 = Time.time;
 			if (timer1 >= end_time + 3.0) {
-				audio.Play ();
 				collision = 3;
-				timer2 = timer1;}
+				timer2 = timer1;
+			}
 		} else if (collision == 3) {
-			audio.Play ();
 			transform.position += Vector3.forward * Time.deltaTime; 
 			timer2 += Time.deltaTime;
 			if (timer2 >= timer1 + difference) {
-				collision = 0;}
+				collision = 0;
+			}
 		} else if (collision == 4) {
 			transform.position += Vector3.forward * Time.deltaTime;
-			audio.Play ();
 		} else if (collision == 5) {
-			audio.Play ();
 			transform.position += Vector3.left * Time.deltaTime;
 			timer1 = Time.time;
 			if (timer1 >= end_time + 3.0) {
-				audio.Play ();
 				collision = 6;
-				timer2 = timer1;}
+				timer2 = timer1;
+			}
 		} else if (collision == 6) {
-			audio.Play ();
 			transform.position += Vector3.back * Time.deltaTime; 
 			timer2 += Time.deltaTime;
 			if (timer2 >= timer1 + difference) {
-				collision = 0;}
+				collision = 0;
+			}
+		} else if (collision == 7) {
+			transform.position += Vector3.zero * Time.deltaTime;
+			collision = 1;
+		} else if (collision == 8) {
+			transform.position += Vector3.zero * Time.deltaTime;
+			collision = 4;
+		} else if (collision == 9) {
+			audio.Play ();
+			transform.position += Vector3.zero * Time.deltaTime;
+			collision = 2;
+		} else if (collision == 10) {
+			audio.Play ();
+			transform.position += Vector3.zero * Time.deltaTime;
+			collision = 5;
 		}
 	}
 
@@ -65,10 +80,10 @@ public class CollisionScript : MonoBehaviour {
 		if (col.gameObject.name == "Cube") {
 			start_time = Time.time;
 			//Destroy (col.gameObject);
-			collision = 1;
+			collision = 7;
 		} else if (col.gameObject.name == "Cube1") {
 			start_time = Time.time;
-			collision = 4;
+			collision = 8;
 		}
 	}
 
@@ -79,9 +94,9 @@ public class CollisionScript : MonoBehaviour {
 		print ("difference " + difference);
 		if (col.gameObject.name == "Cube") {
 			col.gameObject.name = "CubePassed";
-			collision = 2;
+			collision = 9;
 		} else if (col.gameObject.name == "Cube1") {
 			col.gameObject.name = "CubePassed1";
-			collision = 5;}
+			collision = 10;}
 	}
 }
