@@ -110,6 +110,7 @@ public class AnchorObject : MonoBehaviour, IManipulationHandler, IFocusable
 
 		WorldAnchorManager.Instance.AttachAnchor(this.gameObject, AnchorName);
 		Debug.Log("OnManipulationCompleted - Anchor Attached");
+
 	}
 
 	public void OnManipulationCanceled(ManipulationEventData eventData)
