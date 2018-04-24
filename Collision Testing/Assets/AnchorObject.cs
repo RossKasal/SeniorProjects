@@ -26,6 +26,7 @@ public class AnchorObject : MonoBehaviour, IManipulationHandler, IFocusable
 
 		WorldAnchorManager.Instance.AttachAnchor(this.gameObject, AnchorName);
 		Debug.Log("Anchor attached for: " + this.gameObject.name + " - AnchorID: " + AnchorName);
+		print ("started up");
 	}
 
 	void Update()
@@ -73,12 +74,12 @@ public class AnchorObject : MonoBehaviour, IManipulationHandler, IFocusable
 
 	public void OnManipulationStarted(ManipulationEventData eventData)
 	{
-		//Debug.LogFormat("OnManipulationStarted\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
-		//    eventData.InputSource,
-		//    eventData.SourceId,
-		//    eventData.CumulativeDelta.x,
-		//    eventData.CumulativeDelta.y, 
-		//    eventData.CumulativeDelta.z);
+		Debug.LogFormat("OnManipulationStarted\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
+		    eventData.InputSource,
+		    eventData.SourceId,
+		    eventData.CumulativeDelta.x,
+		    eventData.CumulativeDelta.y, 
+		    eventData.CumulativeDelta.z);
 
 		WorldAnchorManager.Instance.RemoveAnchor(this.gameObject);
 		Debug.Log("OnManipulationStarted - Anchor Removed");
@@ -88,25 +89,25 @@ public class AnchorObject : MonoBehaviour, IManipulationHandler, IFocusable
 
 	public void OnManipulationUpdated(ManipulationEventData eventData)
 	{
-		//if (LogGesturesUpdateEvents)
-		//{
-		//    Debug.LogFormat("OnManipulationUpdated\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
-		//        eventData.InputSource,
-		//        eventData.SourceId,
-		//        eventData.CumulativeDelta.x,
-		//        eventData.CumulativeDelta.y,
-		//        eventData.CumulativeDelta.z);
-		//}
+		if (true)
+		{
+		    Debug.LogFormat("OnManipulationUpdated\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
+		        eventData.InputSource,
+		        eventData.SourceId,
+		        eventData.CumulativeDelta.x,
+		        eventData.CumulativeDelta.y,
+		        eventData.CumulativeDelta.z);
+		}
 	}
 
 	public void OnManipulationCompleted(ManipulationEventData eventData)
 	{
-		//Debug.LogFormat("OnManipulationCompleted\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
-		//    eventData.InputSource,
-		//    eventData.SourceId,
-		//    eventData.CumulativeDelta.x,
-		//    eventData.CumulativeDelta.y,
-		//    eventData.CumulativeDelta.z);
+		Debug.LogFormat("OnManipulationCompleted\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
+		    eventData.InputSource,
+		    eventData.SourceId,
+		    eventData.CumulativeDelta.x,
+		    eventData.CumulativeDelta.y,
+		    eventData.CumulativeDelta.z);
 
 		WorldAnchorManager.Instance.AttachAnchor(this.gameObject, AnchorName);
 		Debug.Log("OnManipulationCompleted - Anchor Attached");
@@ -115,11 +116,11 @@ public class AnchorObject : MonoBehaviour, IManipulationHandler, IFocusable
 
 	public void OnManipulationCanceled(ManipulationEventData eventData)
 	{
-		//    Debug.LogFormat("OnManipulationCanceled\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
-		//        eventData.InputSource,
-		//        eventData.SourceId,
-		//        eventData.CumulativeDelta.x,
-		//        eventData.CumulativeDelta.y,
-		//        eventData.CumulativeDelta.z);
+		    Debug.LogFormat("OnManipulationCanceled\r\nSource: {0}  SourceId: {1}\r\nCumulativeDelta: {2} {3} {4}",
+		        eventData.InputSource,
+		        eventData.SourceId,
+		        eventData.CumulativeDelta.x,
+		        eventData.CumulativeDelta.y,
+		        eventData.CumulativeDelta.z);
 	}
 }
